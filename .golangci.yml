@@ -1,0 +1,31 @@
+linters:
+  disable:
+    - unused
+    - varcheck
+  enable:
+    - revive
+
+linters-settings:
+  revive:
+    rules:
+      - name: var-naming
+        disabled: true
+      - name: unused
+        disabled: true
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - unused
+        - varcheck
+    - linters:
+        - unused
+        - varcheck
+      text: "declared and not used"
+
+run:
+  deadline: 5m
+  tests: true
+  skip-dirs:
+    - vendor/ 
