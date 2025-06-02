@@ -4,6 +4,7 @@ import (
 	"encoding/csv"
 	"fmt"
 	"log"
+	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -433,7 +434,6 @@ func processElement(pdf *fpdf.Fpdf, el PDFElement, input map[string]interface{})
 
 		// Check if we need to loop through an array
 		if el.LoopField != "" {
-			// Split into array name and field name
 			parts := strings.Split(el.LoopField, ".")
 			if len(parts) != 2 {
 				log.Printf("Invalid loopField format: %s", el.LoopField)
@@ -445,33 +445,34 @@ func processElement(pdf *fpdf.Fpdf, el PDFElement, input map[string]interface{})
 
 			if data, ok := input[arrayName]; ok {
 				if items, isArray := data.([]interface{}); isArray {
-					// Get current Y position
 					currentY := el.Y
 
-					// Process each array item
 					for _, item := range items {
-						// Get the field value if it's a map
 						if itemMap, isMap := item.(map[string]interface{}); isMap {
-							if _, ok := itemMap[fieldName]; ok {
+							if val, ok := itemMap[fieldName]; ok {
+								// Round Y to avoid float drift gaps
+								currentY = math.Round(currentY*10) / 10
+
 								log.Printf("Drawing box for array item at Y=%.1f", currentY)
 
-								// Set line width to make borders more visible
 								pdf.SetLineWidth(0.2)
-
-								// Draw the rectangle with or without fill
 								if el.background == "1" {
-									pdf.Rect(el.X, currentY, el.Width, el.Height, "FD") // Fill and Draw
+									pdf.Rect(el.X, currentY, el.Width, el.Height, "FD")
 								} else {
-									pdf.Rect(el.X, currentY, el.Width, el.Height, "D") // Draw only
+									pdf.Rect(el.X, currentY, el.Width, el.Height, "D")
 								}
 
-								// Update Y position for next item (no extra spacing)
+								// Optional: draw text inside the box
+								pdf.SetFont(el.Font, el.FontStyle, el.FontSize)
+								pdf.SetTextColor(el.ColorR, el.ColorG, el.ColorB)
+								pdf.SetXY(el.X, currentY)
+								pdf.MultiCell(el.Width, el.Height, fmt.Sprintf("%v", val), el.Border, el.Align, false)
+
 								currentY += el.Height
 							}
 						}
 					}
 
-					// Store the final Y position for this variable
 					lastYPositions[arrayName] = currentY
 					return
 				}
