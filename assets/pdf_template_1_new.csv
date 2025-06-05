@@ -1,8 +1,7 @@
 ﻿type,method,text,variableName,x,y,width,height,font,fontStyle,fontSize,align,RotateDegree,border,ColorR,ColorG,ColorB,background,BGColorR,BGColorG,BGColorB,loopField,imageSrc
 text,MultiCell,PARCEL CONSIGNMENT NOTE ISSUED BY COMPANY,,4,2,98,8,Tahoma,B,10,L,,0,0,0,0,0,,,,,
-text,MultiCell,TAX INVOICE NO.:,,125,2,98,8,Tahoma,B,10,L,,0,0,0,0,0,,,,,
-text,MultiCell,{{InvoiceNumber}},InvoiceNumber,108,3,98,8,Tahoma,,8,R,,0,0,0,153,0,,,,,
-text,MultiCell,{{IRNNumber}},IRNNumber,4,6,200,8,Tahoma,,8,R,,0,200,10,10,0,,,,,
+text,MultiCell,TAX INVOICE NO.:,,108,2,98,8,Tahoma,B,10,R,,0,0,0,0,0,,,,,
+text,MultiCell,{{InvoiceNumber}},InvoiceNumber,108,6,98,8,Tahoma,,8,R,,0,0,0,153,0,,,,,
 box,Rect,,,4,12,101,32,,,,,,1,0,0,0,0,,,,,
 image,Image,,,30.5,13.2,48,17.5,,,,,,0,0,0,0,0,,,,,./assets/smile-logo_small.png
 text,MultiCell,{{CompanyAddress}},CompanyAddress,5,31,98,12,Tahoma,B,8,L,,0,0,0,153,0,,,,,
@@ -16,7 +15,6 @@ text,MultiCell,{{InvoiceDate}},InvoiceDate,105,17.5,33.9,4,Tahoma,,7,C,,0,0,0,15
 text,MultiCell,{{Origin}},Origin,139,17.5,33.9,4,Tahoma,,7,C,,0,0,0,153,0,,,,,
 text,MultiCell,{{Destination}},Destination,173,17.5,32,4,Tahoma,,7,C,,0,0,0,153,0,,,,,
 box,Rect,,,105,27,50,21,,,,,,1,0,0,0,1,200,150,9,,
-text,MultiCell,{{Bacchan}},Bacchan,50,50,50,21,Tahoma,B,20,L,,0,0,0,0,0,,,,,
 text,MultiCell,{{ParcelType}},ParcelType,105,27,50,21,Tahoma,B,7,L,,0,0,0,0,0,,,,,
 box,Rect,,,10,44,95,20,,,,,,1,0,0,0,0,,,,,
 box,Rect,,,10,64,95,20,,,,,,1,0,0,0,0,,,,,

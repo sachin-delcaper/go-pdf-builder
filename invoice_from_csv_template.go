@@ -333,11 +333,22 @@ func processElement(pdf *fpdf.Fpdf, el PDFElement, input map[string]interface{})
 
 				// Replace each variable in the text
 				for _, varName := range vars {
+					// Try exact match first
 					if val, ok := input[varName]; ok {
 						text = strings.ReplaceAll(text, "{{"+varName+"}}", fmt.Sprintf("%v", val))
 						log.Printf("Replaced variable %s with value: %v", varName, val)
-					} else {
-						log.Printf("Warning: Variable %s not found in input", varName)
+						continue
+					}
+
+					// Try case-insensitive match
+					for inputKey, val := range input {
+						// Remove any special characters from input key
+						cleanInputKey := strings.TrimRight(inputKey, ":")
+						if strings.EqualFold(cleanInputKey, varName) {
+							text = strings.ReplaceAll(text, "{{"+varName+"}}", fmt.Sprintf("%v", val))
+							log.Printf("Replaced variable %s with value: %v (matched with %s)", varName, val, inputKey)
+							break
+						}
 					}
 				}
 			} else {
