@@ -1,0 +1,29 @@
+type,method,x,y,width,height,text,variableName,font,fontSize,fontStyle,align,border,colorR,colorG,colorB,background,bgColorR,bgColorG,bgColorB,imageSrc,qrContent,barcodeFormat,barcodeContent,loopField
+text,Cell,10,10,100,8,"Invoice Number:",invoiceNumber,Tahoma,12,B,L,0,0,0,0,0,255,255,255,,,,,
+text,Cell,120,10,70,8,{{invoiceNumber}},,Tahoma,12,,L,1,0,0,255,0,255,255,255,,,,,
+text,Cell,10,25,100,8,"Date:",date,Tahoma,10,,L,0,0,0,0,0,255,255,255,,,,,
+text,Cell,120,25,70,8,{{date}},,Tahoma,10,,L,1,0,0,255,0,255,255,255,,,,,
+text,Cell,10,40,100,8,"Customer:",customerName,Tahoma,10,,L,0,0,0,0,0,255,255,255,,,,,
+text,Cell,120,40,70,8,{{customerName}},,Tahoma,10,,L,1,0,0,255,0,255,255,255,,,,,
+box,Rect,10,60,180,2,,,,,,,1,128,128,128,1,200,200,200,,,,,
+text,Cell,10,70,60,8,"Description",description,Tahoma,10,B,L,1,0,0,0,1,240,240,240,,,,,
+text,Cell,70,70,40,8,"Quantity",quantity,Tahoma,10,B,C,1,0,0,0,1,240,240,240,,,,,
+text,Cell,110,70,40,8,"Price",price,Tahoma,10,B,R,1,0,0,0,1,240,240,240,,,,,
+text,Cell,150,70,40,8,"Total",total,Tahoma,10,B,R,1,0,0,0,1,240,240,240,,,,,
+text,Cell,10,85,60,6,{{description}},,Tahoma,9,,L,1,0,0,0,0,255,255,255,,,,,items.description
+text,Cell,70,85,40,6,{{quantity}},,Tahoma,9,,C,1,0,0,0,0,255,255,255,,,,,items.quantity
+text,Cell,110,85,40,6,{{price}},,Tahoma,9,,R,1,0,0,0,0,255,255,255,,,,,items.price
+text,Cell,150,85,40,6,{{total}},,Tahoma,9,,R,1,0,0,0,0,255,255,255,,,,,items.total
+box,Rect,10,120,180,2,,,,,,,1,128,128,128,1,200,200,200,,,,,
+text,Cell,110,130,40,8,"Subtotal:",subtotal,Tahoma,10,B,R,0,0,0,0,0,255,255,255,,,,,
+text,Cell,150,130,40,8,{{subtotal}},,Tahoma,10,,R,1,0,0,255,0,255,255,255,,,,,
+text,Cell,110,140,40,8,"Tax:",tax,Tahoma,10,B,R,0,0,0,0,0,255,255,255,,,,,
+text,Cell,150,140,40,8,{{tax}},,Tahoma,10,,R,1,0,0,255,0,255,255,255,,,,,
+text,Cell,110,150,40,8,"Total:",grandTotal,Tahoma,10,B,R,0,0,0,0,0,255,255,255,,,,,
+text,Cell,150,150,40,8,{{grandTotal}},,Tahoma,12,B,R,1,255,0,0,0,255,255,255,,,,,
+qr,QR,10,170,30,30,,qrData,,,,,0,0,0,0,0,255,255,255,,,,,
+text,Cell,45,175,50,8,"Scan for verification",,Tahoma,8,,L,0,0,0,0,0,255,255,255,,,,,
+barcode,Barcode,10,210,80,15,,barcodeData,,,,,0,0,0,0,0,255,255,255,,,Code128,,
+text,Cell,10,230,80,6,"Barcode: {{barcodeData}}",,Tahoma,7,,L,0,0,0,0,0,255,255,255,,,,,
+image,Image,140,170,50,25,,logoPath,,,,,0,0,0,0,0,255,255,255,,,,,
+text,Cell,10,250,180,8,"Thank you for your business!",,Tahoma,10,B,C,0,0,128,0,0,255,255,255,,,,,
